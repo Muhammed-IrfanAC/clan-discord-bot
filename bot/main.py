@@ -1,10 +1,13 @@
 import os
+import sys
 import discord
 from discord.ext import commands
 from discord import Intents
 from discord.ext.commands import Bot
 from dotenv import load_dotenv
 from discord import app_commands
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 load_dotenv()
 TOKEN = os.getenv('PROD_BOT_TOKEN')
@@ -24,6 +27,7 @@ bot.setup_hook = setup_hook
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
     print(f'Logged in as {bot.user}')
 
 bot.run(TOKEN)
