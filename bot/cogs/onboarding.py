@@ -4,6 +4,7 @@ from discord.ext import commands
 from .. import coc_api
 from .. import app_fonts
 from .. layouts import embed
+from .. layouts.error_embed import eroor_embed_create
 from .. layouts.proceed_button import DynamicProceedView
 
 class Onboarding(commands.Cog): 
@@ -12,9 +13,9 @@ class Onboarding(commands.Cog):
     self.player_data = None
 
   @app_commands.command(name='start-onboarding', description='Start the onboarding process of a player')
-  async def start_onboarding(self, interactin:discord.Interaction, member: discord.Member, player_tag : str):
+  async def start_onboarding(self, interaction:discord.Interaction, member: discord.Member, player_tag : str):
 
-    await interactin.response.defer()
+    await interaction.response.send_message(content="<a:loading:1292784566964322355> *Preparing onboarding process...* ")
 
     try:
       # Fetch the player's details from coc
@@ -23,11 +24,11 @@ class Onboarding(commands.Cog):
       welcome_embed = embed.create_embed(title=f'{app_fonts.welcome_title.format(name=self.player_data["name"])}', description=app_fonts.welcome_description)
 
       view = DynamicProceedView(next_step_callback=self.optional_guide, restricted_callback=False)
-
-      await interactin.followup.send(content=member.mention ,embed=welcome_embed, view=view)
+      await interaction.edit_original_response(content=member.mention ,embed=welcome_embed, view=view)
   
     except Exception as e:
-      await interactin.followup.send(f"Error: {e}")
+      error_embed = eroor_embed_create(description= e)
+      await interaction.edit_original_response(content=None, embed= error_embed)
       return
     
   async def optional_guide(self, interaction: discord.Interaction):
