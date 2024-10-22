@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 import random
-from .. layouts.error_embed import eroor_embed_create
+from .. layouts.error_embed import error_embed_create
 
 class RoleAssignment(commands.Cog):
     def __init__(self, bot):
@@ -17,7 +17,7 @@ class RoleAssignment(commands.Cog):
         members_with_role = [member for member in interaction.guild.members if role in member.roles]
         
         if len(members_with_role) < 3:
-            error_embed = eroor_embed_create(description="Not enough members with the role to assign donations")
+            error_embed = error_embed_create(description="Not enough members with the role to assign donations")
             await interaction.edit_original_response(embed= error_embed)
             return
 
@@ -26,7 +26,7 @@ class RoleAssignment(commands.Cog):
 
         available_memberss = [member for member in members_with_role if member not in self.selection_hostory]
         if len(members_with_role) < 3:
-            error_embed = eroor_embed_create(description="Not enough distint members to assign doations without repeating")
+            error_embed = error_embed_create(description="Not enough distint members to assign doations without repeating")
             await interaction.edit_original_response(embed= error_embed)
             return
 

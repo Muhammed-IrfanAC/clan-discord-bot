@@ -25,7 +25,7 @@ Here’s how we operate:
 {bullet_emoji} **For Friendly Challenges**, you can challenge yourself or another clanmate. Just click the "challenge" button near the reinforcement request. The best part is, you don’t have to cook an army – you can instantly build and attack!"""
 
 #Task 3
-task3_title="Upload Screen Recording of an attack"
+task3_title="Step 3: Upload Screen Recording of an attack"
 task3_description= f"""{bullet_emoji} Upload a screen recording of any attack done(multiplayer/war) with a proper army. CC optional
 
 {bullet_emoji} Make sure to do the recording in 4x speed
@@ -33,17 +33,21 @@ task3_description= f"""{bullet_emoji} Upload a screen recording of any attack do
 {bullet_emoji} A trainer will verify the replay and let you proceed"""
 
 #Task 4
-task3_title="Upload Screen Recording of an attack"
-task3_description= f"""{bullet_emoji} Upload a screen recording of any attack done(multiplayer/war) with a proper army. CC optional
+task4_title="Step 4: Upload Screen Recording of an attack"
+task4_description= f"""{bullet_emoji} Upload a screen recording of any attack done(multiplayer/war) with a proper army. CC optional
 
 {bullet_emoji} Make sure to do the recording in 4x speed
 
 {bullet_emoji} A trainer will verify the replay and let you proceed"""
 
 #Task 5
-task3_title="Upload Screen Recording of an attack"
-task3_description= f"""{bullet_emoji} Upload a screen recording of any attack done(multiplayer/war) with a proper army. CC optional
+task5_title="Step 5: Upload Screen Recording of an attack"
+task5_description= f"""{bullet_emoji} Upload a screen recording of any attack done(multiplayer/war) with a proper army. CC optional
 
 {bullet_emoji} Make sure to do the recording in 4x speed
 
 {bullet_emoji} A trainer will verify the replay and let you proceed"""
+
+## Count down message
+countdown_message = "## <@{player_id}> Your onboarding process ends <t:{unix_timestamp}:R>.\n"
+                
