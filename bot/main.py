@@ -17,10 +17,24 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 async def setup_hook():
-    for filename in os.listdir("./bot/cogs"):
-        if filename.endswith(".py"):
-            extension = f"bot.cogs.{filename[:-3]}"
-            await bot.load_extension(extension)
+    for item in os.listdir("./bot/cogs"):
+        if item.endswith(".py"):
+            # Load individual command files
+            extension = f"bot.cogs.{item[:-3]}"
+        elif os.path.isdir(os.path.join("./bot/cogs", item)) and item != "__pycache__":
+            # Load commands from subdirectories
+            extension = f"bot.cogs.{item}"
+        else:
+            continue  # Skip if it's not a .py file or a directory
+        
+        # Check if the extension is already loaded
+        if extension not in bot.extensions:
+            try:
+                await bot.load_extension(extension)
+                print(f"Loaded extension: {extension}")
+            except Exception as e:
+                print(f"Failed to load extension {extension}: {e}")
+    
     await bot.tree.sync(guild=discord.Object(id=1028955810128216135))
 
 bot.setup_hook = setup_hook

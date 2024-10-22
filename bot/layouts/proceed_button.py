@@ -1,12 +1,12 @@
 import discord
 
 class DynamicProceedView(discord.ui.View):
-    def __init__(self, next_step_callback, restricted_callback):
+    def __init__(self, next_step_callback, restricted_callback = False):
         super().__init__()
         self.next_step_callback = next_step_callback
         self.restricted_callback = restricted_callback
 
-    @discord.ui.button(label="Proceed", style=discord.ButtonStyle.blurple, emoji=discord.PartialEmoji(id=1292127779915300864, name="right_arrow"))
+    @discord.ui.button(label="Proceed", style=discord.ButtonStyle.blurple, emoji=discord.PartialEmoji(id=1292127779915300864, name="right_arrow"), custom_id="proceed_button")
     async def proceed_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         
         async def role_checker(user: discord.Member):
